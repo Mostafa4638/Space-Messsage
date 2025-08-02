@@ -93,6 +93,7 @@
             display: none;
             position: relative;
             animation: slideIn 1s ease-out;
+            padding-bottom: 120px;
         }
 
         @keyframes slideIn {
@@ -193,11 +194,11 @@
             font-size: 100px;
             font-family: 'Georgia', serif;
             font-weight: bold;
-            color: rgba(78, 8, 144, 0.3); /* Increased opacity from 0.15 to 0.3 */
-            opacity: 0.7; /* Increased opacity from 0.4 to 0.7 */
+            color: rgba(78, 8, 144, 0.3);
+            opacity: 0.7;
             pointer-events: none;
             z-index: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Increased shadow opacity */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             letter-spacing: 6px;
             font-style: italic;
         }
@@ -277,21 +278,24 @@
         }
 
         .envelope-signature {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             font-weight: bold;
-            font-size: 16px;
-            color: white;
-            margin-top: 20px;
+            font-size: 14px;
+            color: white !important;
             font-family: 'Georgia', serif;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             opacity: 0;
-            transform: translateY(20px);
             transition: all 1s ease-in-out 4s;
+            z-index: 10;
+            white-space: nowrap;
         }
 
         .envelope-container.opened .envelope-signature {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1 !important;
         }
 
         .hearts {
@@ -347,8 +351,6 @@
             animation-delay: 2s;
         }
 
-
-
         .trailing-star {
             position: absolute;
             width: 4px;
@@ -397,7 +399,7 @@
             }
         }
 
-        /* Responsive Design for Mobile */
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
             .open-button {
                 padding: 15px 30px;
@@ -411,12 +413,16 @@
                 height: 300px;
             }
 
+            .envelope-container {
+                padding-bottom: 80px;
+            }
+
             .message-container {
                 width: 85vw;
                 max-width: 350px;
                 height: 280px;
                 top: 30px;
-                left: 30px;
+                left: 5%;
                 padding: 25px;
             }
 
@@ -452,6 +458,12 @@
                 font-size: 10px;
                 letter-spacing: 1px;
             }
+
+            .envelope-signature {
+                font-size: 12px;
+                bottom: -10px;
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            }
         }
 
         @media (max-width: 480px) {
@@ -465,11 +477,15 @@
                 height: 250px;
             }
 
+            .envelope-container {
+                padding-bottom: 100px;
+            }
+
             .message-container {
                 width: 90vw;
                 height: 220px;
                 top: 20px;
-                left: 20px;
+                left: 2.5%;
                 padding: 20px;
             }
 
@@ -503,6 +519,12 @@
                 font-size: 8px;
                 letter-spacing: 1px;
             }
+
+            .envelope-signature {
+                font-size: 11px;
+                bottom: -20px;
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            }
         }
 
         @media (max-width: 320px) {
@@ -516,9 +538,15 @@
                 height: 200px;
             }
 
+            .envelope-container {
+                padding-bottom: 120px;
+            }
+
             .message-container {
                 width: 95vw;
                 height: 180px;
+                top: 15px;
+                left: 1.5%;
                 padding: 15px;
             }
 
@@ -540,6 +568,49 @@
             .floating-nada {
                 font-size: 7px;
                 letter-spacing: 1px;
+            }
+
+            .envelope-signature {
+                font-size: 10px;
+                bottom: -30px;
+                text-shadow: 3px 3px 6px rgba(0,0,0,0.9);
+            }
+        }
+
+        /* Specific fixes for tall mobile screens */
+        @media (max-width: 768px) and (min-height: 900px) {
+            .envelope-signature {
+                bottom: 20px;
+                font-size: 13px;
+            }
+            
+            .envelope-container {
+                padding-bottom: 100px;
+            }
+        }
+
+        /* Ultra tall screens like 760x1271 */
+        @media (max-width: 768px) and (min-height: 1200px) {
+            .envelope-signature {
+                bottom: 30px;
+                font-size: 14px;
+                text-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+            }
+            
+            .envelope-container {
+                padding-bottom: 120px;
+            }
+        }
+
+        /* Landscape mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .envelope-signature {
+                bottom: -60px;
+                font-size: 14px;
+            }
+            
+            .envelope-container {
+                padding-bottom: 100px;
             }
         }
     </style>
@@ -734,8 +805,6 @@
             setTimeout(() => {
                 animateText();
             }, 3500);
-            
-
         });
 
         // Initialize stars and Nada names when page loads
@@ -744,4 +813,3 @@
     </script>
 </body>
 </html>
-
