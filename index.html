@@ -276,6 +276,24 @@
             animation: letterGlow 2s ease-in-out infinite alternate;
         }
 
+        .envelope-signature {
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            color: white;
+            margin-top: 20px;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-in-out 4s;
+        }
+
+        .envelope-container.opened .envelope-signature {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .hearts {
             position: absolute;
             top: 0;
@@ -549,6 +567,7 @@
                 </div>
                 <div class="hearts" id="hearts"></div>
             </div>
+            <div class="envelope-signature">BY MOSTAFA</div>
         </div>
     </div>
 
@@ -707,6 +726,7 @@
             // Open envelope after a short delay
             setTimeout(() => {
                 envelope.classList.add('opened');
+                envelopeContainer.classList.add('opened');
                 createHearts();
             }, 1000);
             
@@ -724,3 +744,4 @@
     </script>
 </body>
 </html>
+
