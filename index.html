@@ -309,6 +309,76 @@
             display: none !important;
         }
 
+        .floating-nada {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            animation: twinkle 3s infinite alternate, drift 20s infinite linear;
+        }
+
+        .floating-nada:nth-child(odd) {
+            animation-delay: 1s;
+        }
+
+        .floating-nada:nth-child(3n) {
+            animation-delay: 2s;
+        }
+
+
+
+        .trailing-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff6b9d;
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 107, 157, 0.8);
+            animation: trailFade 2s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes trailFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+
+        .nada-sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+            animation: sparkle 1.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 1;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.2);
+            }
+        }
+
         /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             .open-button {
@@ -359,6 +429,11 @@
             .envelope.opened .message-container {
                 transform: translateY(-100px) scale(1);
             }
+
+            .floating-nada {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -405,6 +480,11 @@
             .envelope.opened .message-container {
                 transform: translateY(-80px) scale(1);
             }
+
+            .floating-nada {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
         }
 
         @media (max-width: 320px) {
@@ -438,11 +518,17 @@
                 font-size: 10px;
                 margin-bottom: 6px;
             }
+
+            .floating-nada {
+                font-size: 7px;
+                letter-spacing: 1px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="stars" id="stars"></div>
+    <div class="floating-nadas" id="floatingNadas"></div>
     
     <div class="main-container">
         <button class="open-button" id="openButton">Open Message</button>
@@ -514,6 +600,27 @@
                         heart.remove();
                     }, 3000);
                 }, i * 200);
+            }
+        }
+
+        // Create floating Nada names like stars
+        function createFloatingNadas() {
+            const floatingNadasContainer = document.getElementById('floatingNadas');
+            const numNadas = 50;
+            
+            for (let i = 0; i < numNadas; i++) {
+                const nada = document.createElement('div');
+                nada.className = 'floating-nada';
+                nada.textContent = 'NADA';
+                
+                // Random position like stars
+                nada.style.left = Math.random() * 100 + '%';
+                nada.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay like stars
+                nada.style.animationDelay = Math.random() * 3 + 's';
+                
+                floatingNadasContainer.appendChild(nada);
             }
         }
 
@@ -607,10 +714,13 @@
             setTimeout(() => {
                 animateText();
             }, 3500);
+            
+
         });
 
-        // Initialize stars when page loads
+        // Initialize stars and Nada names when page loads
         createStars();
+        createFloatingNadas();
     </script>
 </body>
 </html>
